@@ -44,14 +44,6 @@ const router = createRouter({
   defaultPreloadStaleTime: 0,
 })
 
-// Register router for type safety
-declare module '@tanstack/react-router' {
-  interface Register {
-    router: typeof router
-  }
-}
-
 const App = () => <RouterProvider router={router} />
 
 export default App;
-

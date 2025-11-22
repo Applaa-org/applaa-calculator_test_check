@@ -1,51 +1,3 @@
-"use client"
-
-import * as React from "react"
-import { Command as CommandPrimitive } from "cmdk"
-import { cn } from "@/lib/utils"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
-
-const Command = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive>
->(({ className, ...props }, ref) => (
-  <CommandPrimitive
-    ref={ref}
-    className={cn(
-      "flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground",
-      className
-    )}
-    {...props}
-  />
-))
-Command.displayName = CommandPrimitive.displayName
-
-interface CommandDialogProps extends React.ComponentProps<typeof Dialog> {}
-
-const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
-  return (
-    <Dialog {...props}>
-      <DialogContent className="overflow-hidden p-0 shadow-lg">
-        <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
-          {children}
-        </Command>
-      </DialogContent>
-    </Dialog>
-  )
-}
-
-const CommandInput = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive.Input>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
->(({ className, ...props }, ref) => (
-  <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
-    <svg
-<dyad-problem-report summary="2 problems">
-<problem file="src/components/Calculator.tsx" line="11" column="3" code="2724">'&quot;lucide-react&quot;' has no exported member named 'Backspace'. Did you mean 'Backpack'?</problem>
-<problem file="src/components/Calculator.tsx" line="15" column="3" code="2724">'&quot;lucide-react&quot;' has no exported member named 'SquareRoot'. Did you mean 'SquareDot'?</problem>
-</dyad-problem-report>I'll fix the lucide-react import errors by using the correct icon names.
-
-<applaa-write path="src/components/Calculator.tsx" description="Fixing lucide-react icon imports with correct names">
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
@@ -56,14 +8,14 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { 
   RotateCcw, 
+  Backspace, 
   History, 
   Calculator as CalculatorIcon,
   Square,
+  SquareRoot,
   Pi,
   Infinity,
-  Percent,
-  Eraser,
-  SquareRoot
+  Percent
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { showSuccess, showError } from "@/utils/toast";
@@ -291,7 +243,7 @@ export const Calculator = () => {
 
   const basicButtons = [
     { label: "C", onClick: handleClearClick, className: "bg-red-500 hover:bg-red-600 text-white" },
-    { label: "⌫", onClick: handleBackspaceClick, icon: Eraser },
+    { label: "⌫", onClick: handleBackspaceClick, icon: Backspace },
     { label: "%", onClick: () => handleScientificFunction("%") },
     { label: "÷", onClick: () => handleOperationClick("÷"), className: "bg-blue-500 hover:bg-blue-600 text-white" },
     
